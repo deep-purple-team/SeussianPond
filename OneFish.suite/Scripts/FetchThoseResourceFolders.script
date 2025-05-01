@@ -1,0 +1,13 @@
+﻿--put "This is my suite name" && me
+log "This is my Resource path" && ResourcePath()
+put ResourcePath() into mySuitePath
+delete "/Resources" from mySuitePath
+put the last item of (mySuitePath split by slash) into myCurrentSuite
+put the last item of (SuiteInfo().HelperSuites.FilePath split by slash) into myHelperSuite
+put mySuitePath into myHelperSuitePath
+replace myCurrentSuite with myHelperSuite in myHelperSuitePath
+log "This is my Suite info for the current suite when referenced by full path" && SuiteInfo(mySuitePath)
+log "This is my Suite info for the helper suite when referenced by full path" && SuiteInfo(myHelperSuitePath)
+put SuiteInfo(myHelperSuitePath).ImagesFolder.FilePath into myHelperSuitesResourceFoler
+replace "Images" with "Resources" in myHelperSuitesResourceFoler
+log "This is the contents of the Helper Suite's Resources folder" && the files of myHelperSuitesResourceFoler
